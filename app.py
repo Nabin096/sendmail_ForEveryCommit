@@ -1,17 +1,20 @@
-import paramiko
+#!/usr/bin/python
 
-hostname = 'xx.xx.xx.xx'
-port = 22
-username = 'cccyyy'
-password = 'xxxxxyyyy'
+import smtplib
 
-if __name__ == "__main__":
-    paramiko.util.log_to_file('paramiko.log')
-    s = paramiko.SSHClient()
-    s.load_system_host_keys()
-    s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    s.connect(hostname, port, username, password)
-    stdin, stdout, stderr = s.exec_command('ifconfig')
-    #print(stdout.read())
-    #app.run(host='0.0.0.0', port=80)
-    s.close()
+sender = 'from@fromdomain.com'
+receivers = ['to@todomain.com']
+
+message = """From: From Person <from@fromdomain.com>
+To: To Person <to@todomain.com>
+Subject: SMTP e-mail test
+
+This is a test e-mail message.
+"""
+
+try:
+   smtpObj = smtplib.SMTP('localhost')
+   smtpObj.sendmail(sender, receivers, message)         
+   print "Successfully sent email"
+except SMTPException:
+   print "Error: unable to send email"
