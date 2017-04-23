@@ -1,9 +1,9 @@
 import paramiko
 
-hostname = '185.175.210.151'
+hostname = 'xx.xx.xx.xx'
 port = 22
-username = 'angsuman'
-password = 'Angsu@2210'
+username = 'cccyyy'
+password = 'xxxxxyyyy'
 
 if __name__ == "__main__":
     paramiko.util.log_to_file('paramiko.log')
